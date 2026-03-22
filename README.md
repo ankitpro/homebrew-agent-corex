@@ -1,17 +1,8 @@
-# agent-corex Homebrew Tap
+# homebrew-agent-corex
 
-This directory contains the Homebrew formula for agent-corex.
+Homebrew tap for [agent-corex](https://github.com/ankitpro/agent-corex) — the MCP tool router for AI agents.
 
-## Setup (one-time)
-
-The formula lives in a **separate** GitHub repository named `homebrew-agent-corex`.
-Create it, then copy `Formula/agent-corex.rb` into it.
-
-```bash
-# Create the tap repo on GitHub: ankitpro/homebrew-agent-corex
-# Then copy the formula:
-cp -r homebrew/* /path/to/homebrew-agent-corex/
-```
+---
 
 ## Install
 
@@ -20,26 +11,85 @@ brew tap ankitpro/agent-corex
 brew install agent-corex
 ```
 
-## Updating the formula
+No Python required — the formula installs a self-contained binary.
 
-The `update-homebrew-tap.yml` workflow runs automatically after every release.
-It fetches the `.sha256` sidecar files built by `build-binaries.yml` and patches
-`Formula/agent-corex.rb` with the new version and hashes, then commits to the tap repo.
+---
 
-### Manual update
+## What is agent-corex?
+
+`agent-corex` is a CLI tool that:
+
+- **Detects** Claude Desktop, Cursor, VS Code, VS Code Insiders, and VSCodium
+- **Injects** the Agent-Corex MCP gateway as a single entry point into all detected tools
+- **Manages** MCP servers — browse the marketplace, install, update, and toggle servers
+- **Routes** tool calls through a semantic search layer, cutting context tokens by ~60%
 
 ```bash
-# In homebrew-agent-corex repo:
+# Authenticate
+agent-corex login --key acx_your_key
+
+# Detect installed AI tools
+agent-corex detect
+
+# Inject into Claude Desktop, Cursor, VS Code, etc.
+agent-corex init
+
+# Browse and install MCP servers
+agent-corex registry
+agent-corex install-mcp github
+
+# Run health diagnostics
+agent-corex doctor
+```
+
+---
+
+## Supported Platforms
+
+| Platform | Binary |
+|----------|--------|
+| macOS arm64 (M1/M2/M3) | `agent-corex-macos-arm64` |
+| macOS x86_64 (Intel) | `agent-corex-macos-x86_64` |
+| Linux x86_64 | `agent-corex-linux-x86_64` |
+
+> Windows users: download the `.exe` from the [releases page](https://github.com/ankitpro/agent-corex/releases/latest).
+
+---
+
+## Updating
+
+```bash
+brew update
+brew upgrade agent-corex
+```
+
+The formula is auto-updated on every release via `update-homebrew-tap.yml` in the main repo.
+
+---
+
+## Manual formula update
+
+```bash
 VERSION=1.2.0
 sed -i '' "s/version \".*\"/version \"$VERSION\"/" Formula/agent-corex.rb
-# Update sha256 values from the GitHub release .sha256 files
+# Replace the three sha256 values from the GitHub release .sha256 sidecar files
 git commit -am "agent-corex $VERSION"
 git push
 ```
 
-## Required secret
+---
 
-Add `TAP_GITHUB_TOKEN` to the main repo's secrets:
-- Go to: Settings → Secrets and variables → Actions → New repository secret
-- Name: `TAP_GITHUB_TOKEN`
-- Value: A GitHub PAT with `repo` scope, able to push to `ankitpro/homebrew-agent-corex`
+## Tap automation (maintainers)
+
+The `update-homebrew-tap.yml` workflow in the main repo patches this formula automatically after each release. It needs:
+
+- A PAT with `repo` scope saved as `TAP_GITHUB_TOKEN` in the main repo's Actions secrets
+- This repo to be accessible with that token
+
+---
+
+## Links
+
+- Main repo: [github.com/ankitpro/agent-corex](https://github.com/ankitpro/agent-corex)
+- PyPI: [pypi.org/project/agent-corex](https://pypi.org/project/agent-corex/)
+- Issues: [github.com/ankitpro/agent-corex/issues](https://github.com/ankitpro/agent-corex/issues)
