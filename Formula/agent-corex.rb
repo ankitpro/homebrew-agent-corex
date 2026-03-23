@@ -18,12 +18,12 @@ class AgentCorex < Formula
   on_macos do
     # arm64 binary; runs on Intel Macs via Rosetta 2
     url "https://github.com/ankitpro/agent-corex/releases/download/v#{version}/agent-corex-macos-arm64"
-    sha256 "e2bd25d1f66a295a02ef602910afc026942341ce6bc5c26e6a25b999d0262a87"
+    sha256 "10d17483c0f477ae23f03e306428acfa2c550628038c57b137789a5963f91292"
   end
 
   on_linux do
     url "https://github.com/ankitpro/agent-corex/releases/download/v#{version}/agent-corex-linux-x86_64"
-    sha256 "2c5c29ebeef982f9312156689b8e9b9e33174eb4bc4007713a9feb41e9e1d8af"
+    sha256 "cea8dbf20289801451e46ccf9a45217b1d04f2a9deafd5802d3dd90205f2cb80"
   end
 
   def install
