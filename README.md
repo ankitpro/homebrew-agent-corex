@@ -44,15 +44,27 @@ agent-corex doctor
 
 ---
 
+## Other Install Methods
+
+Homebrew is the easiest way on macOS/Linux, but agent-corex is also available as:
+
+| Method | Command / Link |
+|--------|---------------|
+| **Direct binary — macOS arm64** | `curl -fsSL https://github.com/ankitpro/agent-corex/releases/latest/download/agent-corex-macos-arm64 -o /usr/local/bin/agent-corex && chmod +x /usr/local/bin/agent-corex` |
+| **Direct binary — Linux x86_64** | `curl -fsSL https://github.com/ankitpro/agent-corex/releases/latest/download/agent-corex-linux-x86_64 -o /usr/local/bin/agent-corex && chmod +x /usr/local/bin/agent-corex` |
+| **Windows .exe** | [Download from releases](https://github.com/ankitpro/agent-corex/releases/latest/download/agent-corex-windows-x86_64.exe) |
+| **pip** | `pip install agent-corex` |
+
+---
+
 ## Supported Platforms
 
 | Platform | Binary |
 |----------|--------|
 | macOS arm64 (M1/M2/M3) | `agent-corex-macos-arm64` |
-| macOS x86_64 (Intel) | `agent-corex-macos-x86_64` |
+| macOS x86_64 (Intel via Rosetta 2) | `agent-corex-macos-arm64` (same binary) |
 | Linux x86_64 | `agent-corex-linux-x86_64` |
-
-> Windows users: download the `.exe` from the [releases page](https://github.com/ankitpro/agent-corex/releases/latest).
+| Windows x86_64 | `agent-corex-windows-x86_64.exe` |
 
 ---
 
@@ -72,7 +84,7 @@ The formula is auto-updated on every release via `update-homebrew-tap.yml` in th
 ```bash
 VERSION=1.2.0
 sed -i '' "s/version \".*\"/version \"$VERSION\"/" Formula/agent-corex.rb
-# Replace the three sha256 values from the GitHub release .sha256 sidecar files
+# Replace the sha256 values from the GitHub release .sha256 sidecar files
 git commit -am "agent-corex $VERSION"
 git push
 ```
@@ -92,4 +104,5 @@ The `update-homebrew-tap.yml` workflow in the main repo patches this formula aut
 
 - Main repo: [github.com/ankitpro/agent-corex](https://github.com/ankitpro/agent-corex)
 - PyPI: [pypi.org/project/agent-corex](https://pypi.org/project/agent-corex/)
+- Releases: [github.com/ankitpro/agent-corex/releases](https://github.com/ankitpro/agent-corex/releases)
 - Issues: [github.com/ankitpro/agent-corex/issues](https://github.com/ankitpro/agent-corex/issues)
