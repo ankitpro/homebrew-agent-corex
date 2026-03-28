@@ -12,18 +12,18 @@
 class AgentCorex < Formula
   desc "Fast, accurate MCP tool router — detect, inject, and manage MCP servers for AI agents"
   homepage "https://github.com/ankitpro/agent-corex"
-  version "1.1.6"
+  version "1.1.7"
   license "MIT"
 
   on_macos do
     # arm64 binary; runs on Intel Macs via Rosetta 2
     url "https://github.com/ankitpro/agent-corex/releases/download/v#{version}/agent-corex-macos-arm64"
-    sha256 "542404b66fed1dcfe97ed3d8c967132fe5cde8688964a41e6b63707b53591d30"
+    sha256 "bec01e608f119dfa03443e753ad49ce2f7ebcc3b3faccd1934b1529d0eb647d7"
   end
 
   on_linux do
     url "https://github.com/ankitpro/agent-corex/releases/download/v#{version}/agent-corex-linux-x86_64"
-    sha256 "6573cc0f78d5489eeed6712fdf163ea69104b2c4474686ac4b7708828effd3a2"
+    sha256 "0b561a49965bc0a1b98c5e31465b35bc298315c1271e6a55c0f2ac579ee3a867"
   end
 
   def install
